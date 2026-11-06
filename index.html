@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UNTUK AULIA DEDEKU 💖</title>
+  
+  <!-- Tailwind CSS & Lucide Icons -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Canvas Confetti -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <!-- Tone.js for Romantic Audio Effects -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      overflow-x: hidden;
+    }
+
+    .font-romantic {
+      font-family: 'Dancing Script', cursive;
+    }
+
+    /* Glassmorphism visual enhancements */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.35);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      box-shadow: 0 8px 32px 0 rgba(236, 72, 153, 0.25);
+    }
+
+    .glass-card-dark {
+      background: rgba(255, 241, 242, 0.6);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      box-shadow: 0 10px 40px 0 rgba(225, 29, 72, 0.2);
+    }
+
+    /* Custom Animations */
+    @keyframes pulse-slow {
+      0%, 100% { transform: scale(1); opacity: 0.9; }
+      50% { transform: scale(1.08); opacity: 1; }
+    }
+
+    .animate-pulse-slow {
+      animation: pulse-slow 3s infinite ease-in-out;
+    }
+
+    @keyframes float-up {
+      0% {
+        transform: translateY(100vh) scale(0.5) rotate(0deg);
+        opacity: 0;
+      }
+      20% { opacity: 0.8; }
+      100% {
+        transform: translateY(-10vh) scale(1.2) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    .floating-heart {
+      position: absolute;
+      pointer-events: none;
+      animation: float-up linear infinite;
+    }
+
+    /* Envelope flip & open styles */
+    .envelope-wrapper {
+      perspective: 1000px;
+    }
+
+    .envelope {
+      transition: transform 0.6s ease;
+      transform-style: preserve-3d;
+    }
+
+    /* Custom Scrollbar for modern look */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: rgba(255, 241, 242, 0.5);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #f43f5e;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-pink-100 via-rose-100 to-red-100 min-h-screen text-slate-800 relative selection:bg-rose-300 selection:text-rose-900">
+
+  <!-- Floating Particle Container -->
+  <div id="heart-container" class="fixed inset-0 overflow-hidden pointer-events-none z-0"></div>
+
+  <!-- Top Navigation / Music Controls -->
+  <nav class="relative z-20 max-w-5xl mx-auto p-4 flex justify-between items-center">
+    <div class="flex items-center gap-2 text-rose-600 font-bold text-xl tracking-tight">
+      <i data-lucide="heart" class="fill-rose-500 text-rose-500 animate-bounce"></i>
+      <span class="font-romantic text-3xl">SAYANGGKUU</span>
+    </div>
+
+    <!-- Music Toggle Button -->
+    <button id="music-btn" class="glass-card hover:bg-white/60 px-4 py-2 rounded-full flex items-center gap-2 text-sm font-semibold text-rose-600 transition-all shadow-sm hover:shadow-md border border-rose-200 active:scale-95">
+      <i id="music-icon" data-lucide="music" class="w-4 h-4"></i>
+      <span id="music-text">Putar Musik Nya auliaa Cantik</span>
+    </button>
+  </nav>
+
+  <!-- Main Content Container -->
+  <main class="relative z-10 max-w-3xl mx-auto px-4 py-6 flex flex-col items-center gap-8">
+
+    <!-- Hero Card (Main Display) -->
+    <div class="w-full glass-card-dark rounded-3xl p-6 sm:p-10 text-center relative overflow-hidden transition-all duration-500">
+      <div class="absolute -top-12 -right-12 w-40 h-40 bg-pink-300/40 rounded-full blur-2xl pointer-events-none"></div>
+      <div class="absolute -bottom-12 -left-12 w-40 h-40 bg-rose-400/30 rounded-full blur-2xl pointer-events-none"></div>
+
+      <!-- Glowing Center Heart -->
+      <div class="relative inline-block mb-4">
+        <div class="absolute inset-0 bg-rose-400 blur-lg rounded-full opacity-60 animate-pulse-slow"></div>
+        <div class="relative bg-gradient-to-tr from-rose-500 to-pink-500 p-4 sm:p-5 rounded-full text-white shadow-xl shadow-rose-500/30">
+          <i data-lucide="heart-handshake" class="w-10 h-10 sm:w-12 sm:h-12"></i>
+        </div>
+      </div>
+
+      <h1 class="text-3xl sm:text-5xl font-romantic font-bold text-rose-600 mb-2">
+        Spesial Untuk Kamu Yang Aku Sayang
+      </h1>
+      <p class="text-rose-700/80 text-sm sm:text-base max-w-md mx-auto mb-6">
+        ini dibuat untuk dedee aku yang selalu pengen manja ke aku LOVEE bangett.
+      </p>
+
+      <!-- Dynamic Praise Display Box -->
+      <div class="bg-white/80 rounded-2xl p-6 shadow-inner border border-rose-100 min-h-[140px] flex items-center justify-center relative my-4 transition-all">
+        <p id="praise-text" class="text-lg sm:text-xl font-medium text-slate-700 leading-relaxed italic">
+          "Klik tombol di ini sayang buat ngeliat pujian dari Aku..."
+        </p>
+      </div>
+
+      <!-- Interactive Buttons Bar -->
+      <div class="flex flex-wrap gap-3 justify-center items-center mt-6">
+        <button id="btn-praise" class="bg-gradient-to-r from-rose-500 to-pink-500 hover:from-rose-600 hover:to-pink-600 text-white font-semibold px-6 py-3 rounded-full shadow-lg shadow-rose-500/30 flex items-center gap-2 hover:scale-105 active:scale-95 transition-all">
+          <i data-lucide="sparkles" class="w-5 h-5"></i>
+          <span>Disini sayang pujiannya</span>
+        </button>
+
+        <button id="btn-love-burst" class="bg-white hover:bg-rose-50 text-rose-600 font-semibold px-5 py-3 rounded-full border border-rose-200 shadow-sm flex items-center gap-2 hover:scale-105 active:scale-95 transition-all">
+          <i data-lucide="heart" class="w-5 h-5 fill-rose-500 text-rose-500"></i>
+          <span>buat hujan icon love</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Secret Love Letter Section -->
+    <div class="w-full">
+      <div class="text-center mb-4">
+        <h2 class="text-2xl font-romantic font-bold text-rose-700">Surat khusus untuk dede seorang</h2>
+        <p class="text-xs text-rose-600">Klik amplop nya sayang buat liat</p>
+      </div>
+
+      <div id="envelope-card" class="glass-card rounded-2xl p-6 sm:p-8 cursor-pointer hover:shadow-xl transition-all border border-white/80 group text-center relative overflow-hidden">
+        <div id="envelope-closed" class="flex flex-col items-center gap-3 py-6">
+          <div class="w-16 h-16 bg-rose-500/10 rounded-full flex items-center justify-center text-rose-500 group-hover:scale-110 transition-transform">
+            <i data-lucide="mail-heart" class="w-10 h-10"></i>
+          </div>
+          <span class="font-bold text-rose-600 text-lg">Buka amplopnyaa yaa cantikk...</span>
+          <span class="text-xs text-slate-500">(klik aja buat ngeliat)</span>
+        </div>
+
+        <div id="envelope-open" class="hidden text-left space-y-4">
+          <div class="flex justify-between items-center border-b border-rose-200 pb-3">
+            <span class="font-romantic text-2xl font-bold text-rose-600">Untuk isi Hatiku pujaan hatiku,</span>
+            <i data-lucide="heart" class="w-5 h-5 text-rose-500 fill-rose-500"></i>
+          </div>
+          <div class="text-slate-700 leading-relaxed text-sm sm:text-base space-y-3 font-medium">
+            <p>
+              Jika aku harus menggambarkanmu dalam satu kata, itu adalah <strong>'Keajaiban'</strong>. Kehadiranmu selalu berhasil menceriakan hari-hari yang paling muram sekalipun.
+            </p>
+            <p>
+              Senyumanmu adalah alasan mengapa segalanya terasa lebih hangat. Senyummu, kebaikan hatimu, dan caramu memperlakukan orang lain membuatku selalu terkagum-kagum setiap hari.
+            </p>
+            <p>
+              Terima kasih sudah menjadi sosok yang begitu luar biasa dan selalu menginspirasi. Kamu tidak hanya cantik dari luar, tapi hatimu pun berkilau sangat indah. Tetaplah menjadi dirimu sendiri ya!
+            </p>
+          </div>
+          <div class="text-right pt-2 border-t border-rose-200">
+            <p class="font-romantic text-xl text-rose-600 font-bold">Dengan Seluruh Isi Cintakuuu ❤️️</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Reasons Grid Section -->
+    <div class="w-full space-y-4">
+      <h3 class="text-xl font-bold text-rose-700 text-center font-romantic text-2xl">
+        Alasan Kenapa Kamu Begitu Istimewa ✨
+      </h3>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <!-- Reason 1 -->
+        <div class="glass-card p-5 rounded-2xl hover:-translate-y-1 transition-all">
+          <div class="w-10 h-10 bg-pink-500/10 text-pink-500 rounded-xl flex items-center justify-center mb-3">
+            <i data-lucide="smile" class="w-6 h-6"></i>
+          </div>
+          <h4 class="font-bold text-rose-700 mb-1">Senyum Terindah</h4>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Setiap kali kamu tersenyum, dunia seolah ikut tersenyum dan terasa jauh lebih damai.
+          </p>
+        </div>
+
+        <!-- Reason 2 -->
+        <div class="glass-card p-5 rounded-2xl hover:-translate-y-1 transition-all">
+          <div class="w-10 h-10 bg-rose-500/10 text-rose-500 rounded-xl flex items-center justify-center mb-3">
+            <i data-lucide="sun" class="w-6 h-6"></i>
+          </div>
+          <h4 class="font-bold text-rose-700 mb-1">Hati Yang Hangat</h4>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Ketulusan dan kebaikan hatimu selalu memancarkan energi positif bagi siapapun di sekitarmu.
+          </p>
+        </div>
+
+        <!-- Reason 3 -->
+        <div class="glass-card p-5 rounded-2xl hover:-translate-y-1 transition-all">
+          <div class="w-10 h-10 bg-red-500/10 text-red-500 rounded-xl flex items-center justify-center mb-3">
+            <i data-lucide="star" class="w-6 h-6"></i>
+          </div>
+          <h4 class="font-bold text-rose-700 mb-1">Selalu Hebat</h4>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Kerja keras dan perjuanganmu sungguh membanggakan. Kamu melakukannya dengan sempurna!
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="relative z-10 text-center py-8 text-xs text-rose-500/80">
+    <p>Dibuat dengan penuh rasa cinta dan rasa sayang ku pada mu dedeee.. 💕</p>
+  </footer>
+
+  <script>
+    /* Array of romantic praises and sweet words */
+    const praiseList = [
+      "Kamu adalah alasan di balik senyuman terindah yang pernah ada. ✨",
+      "Tahu tidak? Kehadiranmu saja sudah cukup membuat hari siapapun jadi jauh lebih bahagia! 🌸",
+      "Mata dan senyummu punya sihir alami yang selalu bisa menenangkan hati. 💖",
+      "Kamu tidak hanya indah dipandang, tapi hatimu adalah tempat paling hangat yang pernah ada. 🌷",
+      "Terima kasih sudah bertahan dan berjuang sejauh ini. Kamu sosok yang sangat kuat dan hebat! 👑",
+      "Kalau kebaikan hati adalah permata, kamu pasti yang paling berkilau di seluruh semesta. 💎",
+      "Setiap detik yang dihabiskan bersamamu adalah momen paling berharga dalam hidup. ⏳❤️",
+      "Kamu itu seperti melodi favorit yang tidak pernah bosan untuk didengarkan berulang kali. 🎶",
+      "Dunia ini terasa jauh lebih berwarna dan indah hanya karena kamu ada di dalamnya. 🌈",
+      "Jangan pernah ragukan dirimu ya! Kamu lebih tangguh, lebih cerdas, dan lebih dicintai dari yang kamu kira. 🌟"
+    ];
+
+    let isPlayingAudio = false;
+    let synth = null;
+    let loopSynth = null;
+
+    // Initialize Lucide icons
+    lucide.createIcons();
+
+    // 1. Floating Hearts Background Generator
+    function createFloatingHearts() {
+      const container = document.getElementById('heart-container');
+      const heartSymbols = ['💖', '💗', '💕', '❤️', '🌸', '✨'];
+      const heartCount = 20;
+
+      for (let i = 0; i < heartCount; i++) {
+        const heart = document.createElement('div');
+        heart.className = 'floating-heart';
+        heart.innerText = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
+        
+        // Random placement and timing
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.animationDuration = (Math.random() * 5 + 6) + 's';
+        heart.style.animationDelay = (Math.random() * 5) + 's';
+        heart.style.fontSize = (Math.random() * 20 + 16) + 'px';
+
+        container.appendChild(heart);
+      }
+    }
+
+    // 2. Play Romantic Sound Effects using Tone.js
+    function playChimeSound() {
+      try {
+        if (!synth) {
+          synth = new Tone.PolySynth(Tone.Synth).toDestination();
+          synth.volume.value = -12;
+        }
+        Tone.start();
+        const now = Tone.now();
+        // Play romantic major arpeggio
+        synth.triggerAttackRelease("C5", "8n", now);
+        synth.triggerAttackRelease("E5", "8n", now + 0.1);
+        synth.triggerAttackRelease("G5", "8n", now + 0.2);
+        synth.triggerAttackRelease("C6", "4n", now + 0.3);
+      } catch(e) {
+        // Fallback or quiet mode if audio blocked
+      }
+    }
+
+    // Background Gentle Melody
+    function toggleBackgroundMusic() {
+      const btnText = document.getElementById('music-text');
+      const btnIcon = document.getElementById('music-icon');
+
+      if (!isPlayingAudio) {
+        Tone.start();
+        isPlayingAudio = true;
+        btnText.innerText = "Melodi Aktif 💖";
+        btnIcon.setAttribute('data-lucide', 'volume-2');
+        lucide.createIcons();
+
+        // Simple peaceful background chord loop using synth
+        if (!loopSynth) {
+          loopSynth = new Tone.PolySynth(Tone.Synth, {
+            oscillator: { type: "triangle" },
+            envelope: { attack: 1, decay: 1, sustain: 0.5, release: 2 }
+          }).toDestination();
+          loopSynth.volume.value = -18;
+        }
+
+        const notes = [
+          ["C4", "E4", "G4"],
+          ["A3", "C4", "E4"],
+          ["F3", "A3", "C4"],
+          ["G3", "B3", "D4"]
+        ];
+
+        let index = 0;
+        Tone.Transport.scheduleRepeat((time) => {
+          loopSynth.triggerAttackRelease(notes[index % notes.length], "2n", time);
+          index++;
+        }, "2n");
+
+        Tone.Transport.start();
+      } else {
+        isPlayingAudio = false;
+        btnText.innerText = "Putar Melodi Cinta";
+        btnIcon.setAttribute('data-lucide', 'music');
+        lucide.createIcons();
+        Tone.Transport.stop();
+      }
+    }
+
+    // 3. Heart Confetti Burst Effect
+    function triggerLoveConfetti() {
+      playChimeSound();
+      
+      const scalar = 2;
+      const heartShape = confetti.shapeFromText({ text: '❤️', scalar });
+      const pinkHeartShape = confetti.shapeFromText({ text: '💖', scalar });
+
+      confetti({
+        particleCount: 30,
+        spread: 70,
+        origin: { y: 0.6 },
+        shapes: [heartShape, pinkHeartShape],
+        scalar
+      });
+    }
+
+    // 4. Handle Praise Randomizer
+    const btnPraise = document.getElementById('btn-praise');
+    const praiseText = document.getElementById('praise-text');
+
+    btnPraise.addEventListener('click', () => {
+      // Audio chime
+      playChimeSound();
+
+      // Fade out effect
+      praiseText.style.opacity = '0';
+      praiseText.style.transform = 'translateY(8px)';
+
+      setTimeout(() => {
+        // Pick new random praise (avoid direct duplicate)
+        let randomPraise;
+        do {
+          randomPraise = praiseList[Math.floor(Math.random() * praiseList.length)];
+        } while (praiseText.innerText === `"${randomPraise}"`);
+
+        praiseText.innerText = `"${randomPraise}"`;
+        praiseText.style.opacity = '1';
+        praiseText.style.transform = 'translateY(0px)';
+      }, 200);
+
+      // Trigger light heart confetti
+      confetti({
+        particleCount: 15,
+        spread: 50,
+        origin: { y: 0.7 },
+        colors: ['#f43f5e', '#ec4899', '#fb7185']
+      });
+    });
+
+    // 5. Love Burst Button Listener
+    document.getElementById('btn-love-burst').addEventListener('click', triggerLoveConfetti);
+
+    // 6. Music Toggle Listener
+    document.getElementById('music-btn').addEventListener('click', toggleBackgroundMusic);
+
+    // 7. Envelope Open Handler
+    const envelopeCard = document.getElementById('envelope-card');
+    const envelopeClosed = document.getElementById('envelope-closed');
+    const envelopeOpen = document.getElementById('envelope-open');
+
+    envelopeCard.addEventListener('click', () => {
+      if (envelopeOpen.classList.contains('hidden')) {
+        envelopeClosed.classList.add('hidden');
+        envelopeOpen.classList.remove('hidden');
+        triggerLoveConfetti();
+      }
+    });
+
+    // Initialize page functions on load
+    window.onload = () => {
+      createFloatingHearts();
+      // Add smooth transition properties dynamically
+      praiseText.style.transition = 'all 0.3s ease';
+    };
+  </script>
+</body>
+</html>
